@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './cart-sidebar.component.css',
 })
 export class CartSidebarComponent {
-  isOpen = true;
+  isOpen = false;
 
   onCloseClick() {}
 }
