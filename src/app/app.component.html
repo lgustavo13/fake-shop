@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<app-product-list></app-product-list>
+<app-product-list [products]="products()" (productSelected)="addProductToCard($event)"></app-product-list>
 
 <app-cart-summary></app-cart-summary>
 

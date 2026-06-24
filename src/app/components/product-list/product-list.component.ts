@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
+import { IProduct } from '../../interfaces/product.inteface';
 
 @Component({
   selector: 'app-product-list',
@@ -7,10 +8,13 @@ import { Component } from '@angular/core';
   styleUrl: './product-list.component.css',
 })
 export class ProductListComponent {
+  products = input<IProduct[]>([]);
+  productSelected = output<IProduct>();
+
   loadProducts() {
     throw new Error('Method not implemented.');
   }
-  addToCart(_t11: any) {
-    throw new Error('Method not implemented.');
+  addToCart(product: IProduct) {
+    this.productSelected.emit(product);
   }
 }
