@@ -27,6 +27,10 @@ export class AppComponent {
     this.cartProducts.update((products) => [...products, product]);
   }
 
+  removeProductToCart(productIndex: number) {
+    this.cartProducts.update((products) => products.filter((_, index) => index !== productIndex));
+  }
+
   private getProducts() {
     this._productsService.getProducts().subscribe((productsResponse) => {
       this.products.set(productsResponse);

@@ -1,7 +1,15 @@
 <app-header [products]="cartProducts()" (buttonCliked)="isSideBarOpen.set(true)"></app-header>
 
-<app-product-list [products]="products()" (productSelected)="addProductToCard($event)"></app-product-list>
+<app-product-list
+  [products]="products()"
+  (productSelected)="addProductToCard($event)"
+></app-product-list>
 
 <app-cart-summary></app-cart-summary>
 
-<app-cart-sidebar [isOpen]="isSideBarOpen()" (closeClicked)="isSideBarOpen.set(false)"></app-cart-sidebar>
+<app-cart-sidebar
+  [isOpen]="isSideBarOpen()"
+  (closeClicked)="isSideBarOpen.set(false)"
+  [cartProducts]="cartProducts()"
+  (productRemoved)="removeProductToCart($event)"
+></app-cart-sidebar>
