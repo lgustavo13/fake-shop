@@ -31,6 +31,10 @@ export class AppComponent {
     this.cartProducts.update((products) => products.filter((_, index) => index !== productIndex));
   }
 
+  onBuyProducts() {
+    alert(`Você comprou ${this.cartProducts().length} produtos`);
+  }
+
   private getProducts() {
     this._productsService.getProducts().subscribe((productsResponse) => {
       this.products.set(productsResponse);
