@@ -17,13 +17,14 @@ export class AppComponent {
   cartProducts = signal<IProduct[]>([]);
   private _productsService = inject(ProductsService);
 
+  isSideBarOpen = signal<boolean>(false);
+
   ngOnInit() {
     this.getProducts();
   }
 
   addProductToCard(product: IProduct) {
     this.cartProducts.update((products) => [...products, product]);
-    console.log(this.cartProducts());
   }
 
   private getProducts() {

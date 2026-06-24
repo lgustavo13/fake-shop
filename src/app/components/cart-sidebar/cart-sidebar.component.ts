@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-cart-sidebar',
@@ -7,7 +7,10 @@ import { Component } from '@angular/core';
   styleUrl: './cart-sidebar.component.css',
 })
 export class CartSidebarComponent {
-  isOpen = false;
+  isOpen = input<boolean>(false);
+  closeClicked = output<void>();
 
-  onCloseClick() {}
+  onCloseClick() {
+    this.closeClicked.emit();
+  }
 }

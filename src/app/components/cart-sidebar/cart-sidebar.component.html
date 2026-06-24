@@ -1,10 +1,10 @@
 <div
   class="cart-sidebar-overlay"
-  [class.show]="isOpen"
+  [class.show]="isOpen()"
   (click)="onCloseClick()"
 ></div>
 
-<div class="cart-sidebar-container" [class.show]="isOpen">
+<div class="cart-sidebar-container" [class.show]="isOpen()">
   <div class="cart-sidebar-header">
     <h3>Seu Carrinho</h3>
     <button class="close-button" (click)="onCloseClick()">&times;</button>
