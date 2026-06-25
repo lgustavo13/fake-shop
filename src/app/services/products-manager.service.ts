@@ -28,9 +28,9 @@ export class ProductsManagerService {
   }
 
   removeProductToCart(productIndex: number) {
-    const currentList = this.cartProducts.value;
-    const newList = currentList.filter((product) => product.id !== productIndex);
+    const newCartList = this.cartProducts.value;
+    newCartList.splice(productIndex, 1);
 
-    this.cartProducts.next(newList);
+    this.cartProducts.next(newCartList);
   }
 }

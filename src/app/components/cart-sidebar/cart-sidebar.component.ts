@@ -1,15 +1,16 @@
-import { Component, input, output } from '@angular/core';
-import { IProduct } from '../../interfaces/product.inteface';
+import { Component, inject, input, output } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { ProductsManagerService } from '../../services/products-manager.service';
 
 @Component({
   selector: 'app-cart-sidebar',
-  imports: [],
+  imports: [AsyncPipe],
   templateUrl: './cart-sidebar.component.html',
   styleUrl: './cart-sidebar.component.css',
 })
 export class CartSidebarComponent {
+  readonly _productsManagerService = inject(ProductsManagerService);
   isOpen = input<boolean>(false);
-  cartProducts = input<IProduct[]>([]);
   closeClicked = output<void>();
   productRemoved = output<number>();
 
@@ -18,6 +19,6 @@ export class CartSidebarComponent {
   }
 
   onRemoveProduct(productIndex: number) {
-    this.productRemoved.emit(productIndex);
+    this._productsManagerService.removeProductToCart(productIndex);
   }
 }

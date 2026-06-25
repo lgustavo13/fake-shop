@@ -1,20 +1,19 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { IProduct } from '../../interfaces/product.inteface';
+import { ProductsManagerService } from '../../services/products-manager.service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-list',
-  imports: [],
+  imports: [AsyncPipe],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css',
 })
 export class ProductListComponent {
   products = input<IProduct[]>([]);
-  productSelected = output<IProduct>();
+  readonly _productsManagerService = inject(ProductsManagerService);
 
-  loadProducts() {
-    throw new Error('Method not implemented.');
-  }
   addToCart(product: IProduct) {
-    this.productSelected.emit(product);
+    this._productsManagerService.addProductToCart(product);
   }
 }

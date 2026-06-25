@@ -1,18 +1,10 @@
-<app-header [products]="cartProducts()" (buttonCliked)="isSideBarOpen.set(true)"></app-header>
+<app-header (buttonCliked)="isSideBarOpen.set(true)"></app-header>
 
-<app-product-list
-  [products]="products()"
-  (productSelected)="addProductToCard($event)"
-></app-product-list>
+<app-product-list></app-product-list>
 
-<app-cart-summary
-  [cartProducts]="cartProducts()"
-  (buttonClicked)="onBuyProducts()"
-></app-cart-summary>
+<app-cart-summary></app-cart-summary>
 
 <app-cart-sidebar
   [isOpen]="isSideBarOpen()"
   (closeClicked)="isSideBarOpen.set(false)"
-  [cartProducts]="cartProducts()"
-  (productRemoved)="removeProductToCart($event)"
 ></app-cart-sidebar>

@@ -4,7 +4,6 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
 import { CartSidebarComponent } from './components/cart-sidebar/cart-sidebar.component';
 import { ProductsService } from './services/products.service';
-import { IProduct } from './interfaces/product.inteface';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +12,6 @@ import { IProduct } from './interfaces/product.inteface';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  products = signal<IProduct[]>([]);
-  cartProducts = signal<IProduct[]>([]);
   private _productsService = inject(ProductsService);
 
   isSideBarOpen = signal<boolean>(false);
@@ -23,21 +20,7 @@ export class AppComponent {
     this.getProducts();
   }
 
-  addProductToCard(product: IProduct) {
-    this.cartProducts.update((products) => [...products, product]);
-  }
-
-  removeProductToCart(productIndex: number) {
-    this.cartProducts.update((products) => products.filter((_, index) => index !== productIndex));
-  }
-
-  onBuyProducts() {
-    alert(`Você comprou ${this.cartProducts().length} produtos`);
-  }
-
   private getProducts() {
-    this._productsService.getProducts().subscribe((productsResponse) => {
-      this.products.set(productsResponse);
-    });
+    this._productsService.getProducts().subscribe();
   }
 }

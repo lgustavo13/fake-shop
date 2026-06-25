@@ -1,8 +1,6 @@
-<div
-  class="cart-sidebar-overlay"
-  [class.show]="isOpen()"
-  (click)="onCloseClick()"
-></div>
+@let cartProducts = _productsManagerService.cartProducts$ | async;
+
+<div class="cart-sidebar-overlay" [class.show]="isOpen()" (click)="onCloseClick()"></div>
 
 <div class="cart-sidebar-container" [class.show]="isOpen()">
   <div class="cart-sidebar-header">
@@ -10,16 +8,13 @@
     <button class="close-button" (click)="onCloseClick()">&times;</button>
   </div>
   <div class="cart-sidebar-content">
-    @if(cartProducts().length === 0) {
-    <div class="empty-cart-message">Seu carrinho está vazio.</div>
+    @if (cartProducts?.length === 0) {
+      <div class="empty-cart-message">Seu carrinho está vazio.</div>
     }
     <div>
-      @for(product of cartProducts(); track product.id) {
+      @for (product of cartProducts; track product.id) {
         <div class="cart-item">
-          <img
-            [src]="product.image"
-            class="cart-item-image"
-          />
+          <img [src]="product.image" class="cart-item-image" />
           <div class="cart-item-details">
             <div class="cart-item-title">
               {{ product.title }}

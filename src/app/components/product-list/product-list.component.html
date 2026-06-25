@@ -1,14 +1,12 @@
+@let products = _productsManagerService.products$ | async;
+
 <div class="product-list-container">
   <h2>Nossos Produtos</h2>
 
   <div class="product-grid">
-    @for (product of products(); track product.id) {
+    @for (product of products; track product.id) {
       <div class="product-card">
-        <img
-          [src]="product.image"
-          [alt]="product.title"
-          class="product-image"
-        />
+        <img [src]="product.image" [alt]="product.title" class="product-image" />
         <div class="product-info">
           <h3 class="product-title">
             {{ product.title }}

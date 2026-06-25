@@ -1,21 +1,17 @@
-import { Component, input, output } from '@angular/core';
-import { IProduct } from '../../interfaces/product.inteface';
+import { Component, inject } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { ProductsManagerService } from '../../services/products-manager.service';
 
 @Component({
   selector: 'app-cart-summary',
-  imports: [],
+  imports: [AsyncPipe],
   templateUrl: './cart-summary.component.html',
   styleUrl: './cart-summary.component.css',
 })
 export class CartSummaryComponent {
-  cartProducts = input<IProduct[]>([]);
-  buttonClicked = output<void>();
+  readonly _productsManagerService = inject(ProductsManagerService);
 
-  get total() {
-    return this.cartProducts().reduce((total, product) => total + product.price, 0);
-  }
-
-  onBuyClick() {
-    this.buttonClicked.emit();
+  onBuyClick(cartProductLength: number | undefined) {
+    alert(`Você comprou ${cartProductLength} produtoss!!!`);
   }
 }

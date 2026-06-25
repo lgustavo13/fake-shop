@@ -1,5 +1,11 @@
+@let cartProducts = _productsManagerService.cartProducts$ | async;
+
 <footer class="cart-summary-bar">
-  <button class="buy-button" (click)="onBuyClick()">
-    Comprar {{ cartProducts().length }} itens
+  <button
+    class="buy-button"
+    (click)="onBuyClick(cartProducts?.length)"
+    [disabled]="!cartProducts?.length"
+  >
+    Comprar {{ cartProducts?.length }} itens
   </button>
 </footer>

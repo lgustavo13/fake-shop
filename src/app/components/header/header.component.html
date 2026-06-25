@@ -1,8 +1,10 @@
+@let cartProducts = _productsManagerService.cartProducts$ | async;
+
 <header class="app-header">
   <div class="app-title">FakeStoreApp</div>
   <button class="cart-button" (click)="onCartButtonClick()">
     <i class="fas fa-shopping-cart"></i> Carrinho (<span class="cart-count">{{
-      products().length
+      cartProducts?.length
     }}</span
     >)
   </button>
